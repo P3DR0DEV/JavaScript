@@ -20,6 +20,7 @@ body{
     border-radius: 20px;
     background: white;
     margin: auto;
+    margin-top: 0px;
 }
 
 THead{
@@ -67,4 +68,18 @@ th{
 }
 .btn:hover{
     background-color: #1e5891cb;
+}
+
+.paragrafo-resultado{
+    background-color: rgba(27, 220, 20, 0.5);
+    border-radius: 5px;
+    padding: 5px;
+    text-indent: 10px;
+}
+
+.paragrafo-resultado-erro{
+    background-color: rgba(250, 64, 64, 0.63);
+    border-radius: 5px;
+    padding: 5px;
+    text-indent: 10px;
 }
