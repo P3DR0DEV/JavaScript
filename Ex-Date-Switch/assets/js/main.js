@@ -77,6 +77,10 @@ function getMesText(mesNumber){
             return mesNumberTxT 
     }
 }
+
+function zeroAEsquerda(num){
+    return num >= 10? num : `0${num}` 
+}
 let dia = getDiaDaSemanaTexto(data.getDay())
 let mes = getMesText(data.getMonth())
-h1.innerHTML = `${dia}, ${data.getDate()} de ${mes} de ${data.getFullYear()}, ${data.getHours()}:${data.getMinutes()}`
+h1.innerHTML = `${dia}, ${data.getDate()} de ${mes} de ${data.getFullYear()}, ${zeroAEsquerda(data.getHours())}:${zeroAEsquerda(data.getMinutes())}`
