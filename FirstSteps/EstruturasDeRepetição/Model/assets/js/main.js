@@ -1,9 +1,9 @@
 const elementos = [
     {tag: 'h1', texto: 'Exercícios com Repetição'},
-    {tag: 'p', texto: 'Frase 1'},
-    {tag: 'div', texto: 'Frase 2'},
-    {tag: 'footer', texto: 'Frase 3'},
-    {tag: 'section', texto: 'Frase 4'}
+    {tag: 'p', texto: 'Teste de Paragrafo'},
+    {tag: 'div', texto: 'Teste de criação de DIV'},
+    {tag: 'footer', texto: 'teste de footer'},
+    {tag: 'section', texto: 'teste de section'}
 ]
 
 
