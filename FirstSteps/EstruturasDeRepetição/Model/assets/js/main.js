@@ -10,17 +10,6 @@ const elementos = [
 const container = document.querySelector('.container')
 const div = document.createElement('div')
 
-for (c in elementos){
-    const { tag } = elementos[c]
-    const { texto } = elementos[c]
-    setResultado(texto)
-    function setResultado(texto){   
-        criaElemento(tag)
-        let resultado = document.querySelector(tag)
-        resultado.innerHTML = texto
-    }
-}
-
 function criaElemento(tag){
     const novoElemento = document.querySelector('.container')
     novoElemento.createElement(`${tag}`)
