@@ -23,20 +23,20 @@ function iniciaRelogio(){
 
 
 
-iniciar.addEventListener('click',(event) => {
-    cronometro.classList.remove('pausado')
-    clearInterval(timer)
-    iniciaRelogio()
-})
+document.addEventListener('click',(event) => {
+    const evento = event.target
 
-pausar.addEventListener('click', (event) => {
-    cronometro.classList.add('pausado')
-    clearInterval(timer)
-})
-
-zerar.addEventListener('click', (event) => {
-    cronometro.classList.remove('pausado')
-   clearInterval(timer)
-   cronometro.innerHTML = '00:00:00'
-   segundos =0
+    if(evento.classList.contains('iniciar')){
+        cronometro.classList.remove('pausado')
+        clearInterval(timer)
+        iniciaRelogio()
+    } else if (evento.classList.contains('pausar')){
+        cronometro.classList.add('pausado')
+        clearInterval(timer)
+    } else if (evento.classList.contains('zerar')){
+        cronometro.classList.remove('pausado')
+        clearInterval(timer)
+        cronometro.innerHTML = '00:00:00'
+        segundos =0
+    }
 })
