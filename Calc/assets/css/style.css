@@ -1,0 +1,73 @@
+:root{
+    --color: rgba(40, 67, 107, 0.596);
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    background: var(--color);
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+h1{
+    text-align: center;
+}
+
+.container{
+    max-width: 580px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.form input, form label, form button{
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.form input{
+    font-size: 20px;
+    height: 30px;
+    padding: 0 10px;
+}
+
+form input:focus{
+    outline: 1px solid var(--color);
+}
+
+.btn{
+    position: relative;
+    left: 60px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.705);
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    background-color: rgba(206, 203, 203, 0.74);
+}
+.display{
+    position: relative;
+    left: 60px;
+    padding: 10px;
+    width: 416px;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 25px;
+}
+
+.btn:hover{
+    background-color: rgba(139, 139, 139, 0.795);
+}
+.calculadora{
+    width: 400px;
+}
