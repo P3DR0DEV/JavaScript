@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "author": "Pedro Henrique Campos Mendes"
+  "author": "Pedro Henrique Campos Mendes",
+  "dependencies": {
+    "express": "^4.18.1",
+    "lodash": "^4.17.21"
+  }
 }
