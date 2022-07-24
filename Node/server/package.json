@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Pedro Henrique Campos Mendes",
   "dependencies": {
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "global": "^4.4.0",
     "lodash": "^4.17.21",
