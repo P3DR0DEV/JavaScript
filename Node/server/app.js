@@ -23,6 +23,12 @@ app.get('/about-us',(req,res)=>{
     res.redirect('/about');
 });
 
+app.get('/contact', (req,res)=>{
+    res.sendFile('./views/contact.html',{
+        root: __dirname
+    });
+});
+
 //404 page, tem que se o ultimo codigo da pagina
 
 app.use((req, res)=>{
