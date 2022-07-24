@@ -23,7 +23,7 @@ app.get('/about-us',(req,res)=>{
     res.redirect('/about');
 });
 
-//!404 page, tem que se o ultimo codigo da pagina
+//404 page, tem que se o ultimo codigo da pagina
 
 app.use((req, res)=>{
     res.status(404).sendFile('./views/404.html', {
