@@ -2,14 +2,20 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const app = express();
+const mongoose = require('mongoose')
 
+//conect to MongoDB
+const dbURI = 'mongodb+srv://P3DR0DEV:25042904sddL!@node.dyxmn.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(dbURI)
+.then((result)=>console.log('Connected to DB'))
+.catch((err)=> console.log(err))
 
 // register view engines
 app.use(express.static(path.resolve(__dirname,'./public')))
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname,'./views'));
 
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 
 app.get('/', (req,res)=>{
     const blogs = [
