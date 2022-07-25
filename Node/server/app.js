@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require('mongoose')
 
 //conect to MongoDB
-const dbURI = 'mongodb+srv://P3DR0DEV:25042904sddL!@node.dyxmn.mongodb.net/?retryWrites=true&w=majority';
+const dbURI = '';
 mongoose.connect(dbURI)
 .then((result)=>console.log('Connected to DB'))
 .catch((err)=> console.log(err))
