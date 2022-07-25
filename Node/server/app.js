@@ -4,7 +4,8 @@ const morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose')
 
-const dbURI = 'mongodb+srv://P3DR0DEV:25042904sddl@node.dyxmn.mongodb.net/?retryWrites=true&w=majority';
+require('dotenv')
+const dbURI = '';
 mongoose.connect(dbURI)
 .then((result)=>console.log('Connected to DB'))
 .catch((err)=> console.log(err))
