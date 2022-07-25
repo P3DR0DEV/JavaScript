@@ -34,7 +34,7 @@ app.get('/about-us',(req,res)=>{
     return res.redirect('/about');
 });
 
-app.get('/create', (req,res)=>{
+app.get('/blogs/create', (req,res)=>{
     return res.render('create', {
         title:'Create New Blog'
     });
