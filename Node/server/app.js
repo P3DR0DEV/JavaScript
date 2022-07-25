@@ -1,34 +1,50 @@
 const express = require('express');
-
-//express app
+const path = require('path')
+const ejs = require('ejs')
 const app = express();
+
 
 // register view engines
 app.set('view engine', 'ejs');
+app.set('views', path.resolve(__dirname,'./views'))
 
-//listen for request
-
-app.listen(3000); // port 
-
-app.get('/'|| '/index' || '/home', (req,res)=>{
-    res.render();
+app.get('/', (req,res)=>{
+    const blogs = [
+        {title: 'Renan é gay', snippet: 'Renan é bem gay mesmo'},
+        {title: 'Ancient é N', snippet: 'Ancient é bem N mesmo'},
+        {title: 'Capivara é psico', snippet: 'Capivara fez uma mulher terminar e depois fez ela se matar'}
+    ]
+    return res.render('index', {
+        title: 'Home',
+        blogs
+    });
 });
 
 app.get('/about', (req,res)=>{
-    res.render('about')
+    return res.render('about', {
+        title: 'About'
+    })
 });
 
 //redirectiong a page
 app.get('/about-us',(req,res)=>{
-    res.redirect('/about');
+    return res.redirect('/about');
 });
 
-// app.get('/contact', (req,res)=>{
+app.get('/blogs/create', (req,res)=>{
+    return res.render('create', {
+        title:'Create New Blog'
+    })
+});
 
-// });
-
-//404 page, tem que se o ultimo codigo da pagina
+//!404 page, tem que se o ultimo codigo da pagina
 
 app.use((req, res)=>{
-    res.status(404).render('404')
+    res.status(404).render('404', {
+        title: '404'
+    })
 })
+
+//listen for request
+
+app.listen(3000); // port 
