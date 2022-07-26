@@ -19,10 +19,6 @@ app.set('views', path.resolve(__dirname,'./views'));
 app.use(express.static(path.resolve(__dirname,'./public')))
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.use((req, res, next) => {
-    res.locals.path = req.path;
-    next();
-});
 
 
 app.get('/', (req,res)=>{
