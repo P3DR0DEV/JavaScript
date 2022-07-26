@@ -3,10 +3,10 @@ const path = require('path');
 const morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose')
+require('dotenv').config({path: __dirname + '/.env'})
 
-require('dotenv')
-const dbURI = '';
-mongoose.connect(dbURI)
+
+mongoose.connect(`${process.env.MONGODB_URI}`)
 .then((result)=>console.log('Connected to DB'))
 .catch((err)=> console.log(err))
 
@@ -19,9 +19,9 @@ app.use(morgan('dev'));
 
 app.get('/', (req,res)=>{
     const blogs = [
-        {title: 'Renan é gay', snippet: 'Renan é bem gay mesmo'},
-        {title: 'Ancient é N', snippet: 'Ancient é bem N mesmo'},
-        {title: 'Capivara é psico', snippet: 'Capivara fez uma mulher terminar e depois fez ela se matar'}
+        {title: 'Felipe é lindo', snippet: 'Felipe é lindo'},
+        {title: 'Lucélia é uma boa pessoa', snippet: 'Lucélia é uma boa pessoa'},
+        {title: '', snippet: ''}
     ];
     return res.render('index', {
         title: 'Home',
