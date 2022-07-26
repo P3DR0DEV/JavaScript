@@ -1,0 +1,39 @@
+//create new object on database
+app.get('/add-blog',(req, res)=>{
+    const blog = new Blog({
+        title:'New Blog',
+        snippet: 'About my new blog',
+        body: 'This is the first blog that i\'m doing on node.js.'
+    });
+
+    blog.save()
+    .then((result)=>{
+       res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
+//array com os documentos criados
+app.get('/all-blogs',(req,res)=>{
+    Blog.find()
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+});
+
+//finding document by id
+app.get('/single-blog', (req,res)=>{
+    Blog.findById('62dff5a230733aa3623a8f5b')
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
