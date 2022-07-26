@@ -2,12 +2,13 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const app = express();
-const mongoose = require('mongoose')
-require('dotenv').config({path: __dirname + '/.env'})
+const mongoose = require('mongoose');
+const Blog = require('./models/blog');
+require('dotenv').config({path: __dirname + '/.env'});
 
 
 mongoose.connect(`${process.env.MONGODB_URI}`)
-.then((result)=>console.log('Connected to DB'))
+.then((result)=> app.listen(3000))
 .catch((err)=> console.log(err))
 
 // register view engines
@@ -17,16 +18,49 @@ app.set('views', path.resolve(__dirname,'./views'));
 
 app.use(morgan('dev'));
 
+// //create new object on database
+// app.get('/add-blog',(req, res)=>{
+//     const blog = new Blog({
+//         title:'New Blog',
+//         snippet: 'About my new blog',
+//         body: 'This is the first blog that i\'m doing on node.js.'
+//     });
+
+//     blog.save()
+//     .then((result)=>{
+//         res.send(result)
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     })
+// })
+
+// //array com os documentos criados
+// app.get('/all-blogs',(req,res)=>{
+//     Blog.find()
+//     .then((result)=>{
+//         res.send(result)
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     })
+// });
+
+// //finding document by id
+// app.get('/single-blog', (req,res)=>{
+//     Blog.findById('62dff5a230733aa3623a8f5b')
+//     .then((result)=>{
+//         res.send(result)
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     })
+// })
+
+
+
 app.get('/', (req,res)=>{
-    const blogs = [
-        {title: 'Felipe é lindo', snippet: 'Felipe é lindo'},
-        {title: 'Lucélia é uma boa pessoa', snippet: 'Lucélia é uma boa pessoa'},
-        {title: '', snippet: ''}
-    ];
-    return res.render('index', {
-        title: 'Home',
-        blogs
-    });
+    res.redirect('/blogs')
 });
 
 app.get('/about', (req,res)=>{
@@ -39,6 +73,22 @@ app.get('/about', (req,res)=>{
 app.get('/about-us',(req,res)=>{
     return res.redirect('/about');
 });
+
+
+
+//blog routs
+app.get('/blogs', (req, res)=>{
+    Blog.find().sort({ createdAt: -1 })
+    .then((result)=>{
+        res.render('index',{
+            title: 'All Blogs',
+            blogs: result
+        })
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
 
 app.get('/blogs/create', (req,res)=>{
     return res.render('create', {
@@ -56,4 +106,4 @@ app.use((req, res)=>{
 
 //listen for request
 
-app.listen(3000); // port 
+// app.listen(3000); // port 
