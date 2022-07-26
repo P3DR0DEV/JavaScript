@@ -1,33 +1,36 @@
 const express = require('express');
-const path = require('path');
 const morgan = require('morgan');
-const app = express();
+const path = require('path');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
-const { render } = require('ejs');
 require('dotenv').config({path: __dirname + '/.env'});
 
+// express app
+const app = express();
 
+//register DataBase
 mongoose.connect(`${process.env.MONGODB_URI}`)
 .then((result)=> app.listen(3000))
 .catch((err)=> console.log(err))
 
 // register view engines & middlewares & static files
-app.use(express.static(path.resolve(__dirname,'./public')))
-app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname,'./views'));
+app.use(express.static(path.resolve(__dirname,'./public')))
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+});
 
 
 app.get('/', (req,res)=>{
-    res.redirect('/blogs')
+    return res.redirect('/blogs')
 });
 
 app.get('/about', (req,res)=>{
-    return res.render('about', {
-        title: 'About'
-    });
+    return res.render('about', { title: 'About' });
 });
 
 //redirectiong a page
@@ -52,7 +55,7 @@ app.get('/blogs', (req, res)=>{
 })
 app.post('/blogs',(req,res)=>{
     const blog = new Blog(req.body);
-
+    
     blog.save()
     .then((result)=>{
         res.redirect('/blogs')
@@ -60,6 +63,9 @@ app.post('/blogs',(req,res)=>{
     .catch((err)=>console.log(err))
 });
 
+app.get('/blogs/create', (req,res)=>{
+    return res.render('create', { title: 'Create New Blog' })
+});
 app.get('/blogs/:id',(req,res)=>{
     const id = req.params.id;
     Blog.findById(id)
@@ -69,17 +75,22 @@ app.get('/blogs/:id',(req,res)=>{
     .catch(err => console.log(err));
 });
 
-app.get('/blogs/create', (req,res)=>{
-    return res.render('create', {
-        title:'Create New Blog'
-    });
+// delete from the database => must be connected to the frontend detais.ejs
+app.delete('/blogs/:id', (req, res)=>{
+
+    const id = req.params.id;
+
+    Blog.findByIdAndDelete(id)
+     .then( result =>{
+            res.json({ redirect:'/blogs' })
+        })
+     .catch(err => console.log(err))
 });
+
 //!404 page, tem que se o ultimo codigo da pagina
 
 app.use((req, res)=>{
-    res.status(404).render('404', {
-        title: '404'
-    });
+    return res.status(404).render('404', { title: '404' });
 });
 
 
