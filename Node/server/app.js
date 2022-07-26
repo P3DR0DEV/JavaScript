@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
+const blogRoutes = require('./routes/blogRoutes')
 require('dotenv').config({path: __dirname + '/.env'});
 
 // express app
@@ -38,62 +38,11 @@ app.get('/about-us',(req,res)=>{
     return res.redirect('/about');
 });
 
-
-
-//blog routs
-app.get('/blogs', (req, res)=>{
-    Blog.find().sort({ createdAt: -1 })
-    .then((result)=>{
-        res.render('index',{
-            title: 'All Blogs',
-            blogs: result
-        })
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-})
-app.post('/blogs',(req,res)=>{
-    const blog = new Blog(req.body);
-    
-    blog.save()
-    .then((result)=>{
-        res.redirect('/blogs')
-    })
-    .catch((err)=>console.log(err))
-});
-
-app.get('/blogs/create', (req,res)=>{
-    return res.render('create', { title: 'Create New Blog' })
-});
-app.get('/blogs/:id',(req,res)=>{
-    const id = req.params.id;
-    Blog.findById(id)
-    .then(result =>{
-        res.render('details', {title:'Blog Details', blog: result});
-    })
-    .catch(err => console.log(err));
-});
-
-// delete from the database => must be connected to the frontend detais.ejs
-app.delete('/blogs/:id', (req, res)=>{
-
-    const id = req.params.id;
-
-    Blog.findByIdAndDelete(id)
-     .then( result =>{
-            res.json({ redirect:'/blogs' })
-        })
-     .catch(err => console.log(err))
-});
+// blog routes 
+app.use('/blogs', blogRoutes)
 
 //!404 page, tem que se o ultimo codigo da pagina
 
 app.use((req, res)=>{
     return res.status(404).render('404', { title: '404' });
 });
-
-
-//listen for request
-
-// app.listen(3000); // port 
