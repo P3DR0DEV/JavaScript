@@ -4,7 +4,7 @@ const Blog = require('../models/blog')
 const blogIndex = (req, res)=>{
     Blog.find().sort({ createdAt: -1 })
     .then((result)=>{
-       res.render('index',{
+       res.render('../views/blog/index',{
            title: 'All Blogs',
            blogs: result
        })
@@ -19,13 +19,13 @@ const blogDetails = (req, res)=>{
 
     Blog.findById(id)
      .then(result =>{
-        res.render('details', {title:'Blog Details', blog: result});
+        res.render('../views/blog/details', {title:'Blog Details', blog: result});
      })
      .catch(err => console.log(err));
 }
 
 const returnCreatePage = (req,res)=>{
-    return res.render('create', { title: 'Create New Blog' })
+    return res.render('../views/blog/create', { title: 'Create New Blog' })
 }
 
 
