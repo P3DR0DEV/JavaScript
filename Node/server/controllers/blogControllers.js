@@ -21,7 +21,10 @@ const blogDetails = (req, res)=>{
      .then(result =>{
         res.render('../views/blog/details', {title:'Blog Details', blog: result});
      })
-     .catch(err => console.log(err));
+     .catch(err =>{ 
+        console.log(err)
+        res.render('../views/404', { title: 'Not Found' })
+    });
 }
 
 const returnCreatePage = (req,res)=>{
@@ -50,7 +53,10 @@ const blogDeleteItem = (req, res)=>{
      .then( result =>{
             res.json({ redirect:'/blogs' })
         })
-     .catch(err => console.log(err))
+     .catch(err => {
+        console.log(err);
+        res.render('../views/404', { title: 'Not Found' })
+    })
 }
 
 module.exports = {
