@@ -23,7 +23,11 @@ function validaCPF(cpf){
     if (primeiroDigito > 9 ){
         primeiroDigito = 0
     };
-
+    const sequencia = cpf[0].repeat(cpf.length)
+    if (sequencia === cpf){
+        console.log('CPF Inválido.')
+        return 
+    }
     if (primeiroDigito === Number(cpfArray[9])){
         let cont = 11;  
         for(let i in cpfArray){
@@ -50,4 +54,6 @@ function validaCPF(cpf){
     };
 };
 
-validaCPF();
+validaCPF('');
+
+module.exports = validaCPF()
