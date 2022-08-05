@@ -47,7 +47,7 @@ class ContaCorrente extends Conta {
         this.limite = limite;
     }
 
-    sacar(quantSaque){
+    saque(quantSaque){
         let quantLimite = this.quantia + this.limite
 
         if (quantLimite < quantSaque){
@@ -97,8 +97,8 @@ const pessoa1 = new Conta('Pedro', '000-1', 2000, '1234')
 const pessoa2 = new Conta('Pablo', '000-2', 4000, '12345')
 const pessoa3 = new ContaCorrente('Pedro', '000-1', 2000, '1234', 1000)
 
-
-pessoa3.transfere(2000, pessoa2)
+pessoa3.saque(3100)
+// pessoa3.transfere(2000, pessoa2)
 console.log(pessoa3.extrato())
 console.log(pessoa2.extrato())
 
