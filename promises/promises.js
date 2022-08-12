@@ -34,9 +34,9 @@ espera('Mensagem 1', rand(1,3))
 
          // Metodos de uma promise 
          /**
-          * Promise.all 
-          * Promise.race
-          * Promise.resolve
+          * Promise.all  resolve todas as promises 
+          * Promise.race  devolve o primeiro valor que terminou a promise
+          * Promise.resolve 
           * Promise.reject
           */
 
