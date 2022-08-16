@@ -1,18 +1,20 @@
 const request = (obj) =>{
-    const xhr = new XMLHttpRequest();
-    xhr.open(obj.method, obj.url, true);
-    xhr.send(); //POST Method
-
-    xhr.addEventListener('load', ()=>{
-        if(xhr.status >= 200 && xhr.status <300){
-            obj.success(xhr.responseText);
-        } else{
-            obj.error({
-                code: xhr.status,
-                msg: xhr.statusText
-            });
-        };
-    });
+    return new Promise((resolve, reject)=>{
+        const xhr = new XMLHttpRequest();
+        xhr.open(obj.method, obj.url, true);
+        xhr.send(); //POST Method
+    
+        xhr.addEventListener('load', ()=>{
+            if(xhr.status >= 200 && xhr.status <300){
+                resolve(xhr.responseText);
+            } else{
+                reject({
+                    code: xhr.status,
+                    msg: xhr.statusText
+                });
+            };
+        });
+    })
 };
 
 
@@ -26,18 +28,18 @@ const click = document.addEventListener('click',(e)=>{
 });
 
 
-function loadPage(el) {
+async function loadPage(el) {
     const href = el.getAttribute('href')
-    request({
-        method: 'GET',
-        url: href,
-        success(response){
-            loadResult(response)
-        },
-        error(errorText){
-            console.log(errorText)
-        }
-    });
+    try{
+        const objConfig = {
+            method: 'GET',
+            url: href,
+    };} catch(e){
+        console.log(e)
+    }
+
+    const response = await request(objConfig);
+    loadResult(response);
 };
 function loadResult(response) {
     const resultado = document.querySelector('.resultado');
