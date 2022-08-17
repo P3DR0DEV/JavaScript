@@ -14,7 +14,8 @@ function loadPage(el) {
             if (resposta.status !== 200) throw new Error('Erro 404!') // status 200 - OK if > 200 maybe Error
             return resposta.text() // inner text === html puro 
     })
-        .then(html => loadResult(html));
+        .then(html => loadResult(html))
+        .catch(e => console.error(e));
     
 };
 
