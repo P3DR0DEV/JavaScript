@@ -6,8 +6,24 @@ fetch('pessoas.json')
 
 
 function loadJson(json) {
-   const container = document.querySelector('.pessoas')
-   const table = document.createElement('table')
+   const container = document.querySelector('.pessoas');
+   const table = document.createElement('table');
+   const tr = document.createElement('tr');
+   const tdNome = document.createElement('td')
+   const tdSalario = document.createElement('td')
+   const tdEmail = document.createElement('td')
+
+
+
+   tdNome.innerHTML = 'Nome'
+   tdSalario.innerHTML = 'Salario'
+   tdEmail.innerHTML = 'E-mail'
+   tr.appendChild(tdNome)
+   tr.appendChild(tdSalario)
+   tr.appendChild(tdEmail)
+   table.appendChild(tr)
+
+
    
    for(let pessoa of json){
       const tr = document.createElement('tr')
