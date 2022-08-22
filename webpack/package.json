@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "teste": "webpack -w "
+    "dev": "webpack -w "
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "core-js": "^3.24.1",
-    "regenerator-runtime": "^0.13.9"
+    "css-loader": "^6.7.1",
+    "regenerator-runtime": "^0.13.9",
+    "style-loader": "^3.3.1"
   }
 }

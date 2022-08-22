@@ -1,1 +1,1 @@
-const nome = 'Pedro'
+import './assets/css/style.css'
