@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","mappings":";;;;;AAAA,IAAMA,IAAI,GAAG,OAAb,C","sources":["webpack://webpack/./src/index.js"],"sourcesContent":["const nome = 'Pedro'"],"names":["nome"],"sourceRoot":""}
