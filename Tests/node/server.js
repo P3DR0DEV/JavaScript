@@ -6,11 +6,14 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-
+const helmet = require('helmet');
+const csrf = require('csurf');
+const { checkCsrf } = require('./src/middlewares/csrfMiddleware')
 
 require('dotenv').config();
 const mongodb = process.env.MONGODB_URI;
-
+app.use(csrf());
+app.use(checkCsrf)
 app.use(express.static(path.resolve(__dirname, 'public')));
 
 const sessionOptions = session({
@@ -25,7 +28,7 @@ const sessionOptions = session({
 });
 app.use(sessionOptions);
 app.use(flash());
-
+app.use(helmet())
 app.set('views', path.resolve(__dirname, 'src' , 'views'));
 app.set('view engine', 'ejs');
 
