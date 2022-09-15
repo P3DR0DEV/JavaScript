@@ -13,6 +13,8 @@ const { checkCsrf, genCSRFToken } = require('./src/middlewares/csrfMiddleware')
 require('dotenv').config();
 const mongodb = process.env.MONGODB_URI;
 app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
 const sessionOptions = session({
     secret: process.env.SECRET,
