@@ -8,6 +8,6 @@ const HomeSchema = new mongoose.Schema({
     description: String
 });
 
-const model = mongoose.model('Home', HomeSchema)
+const model = mongoose.model('Home', HomeSchema,'Agenda')
 
 module.exports = model

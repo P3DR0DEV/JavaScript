@@ -6,7 +6,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const csrf = require('csurf');
 const { checkCsrf, genCSRFToken } = require('./src/middlewares/csrfMiddleware')
 
@@ -28,7 +28,7 @@ const sessionOptions = session({
 });
 app.use(sessionOptions);
 app.use(flash());
-app.use(helmet());
+// app.use(helmet());
 
 app.set('views', path.resolve(__dirname, 'src' , 'views'));
 app.set('view engine', 'ejs');

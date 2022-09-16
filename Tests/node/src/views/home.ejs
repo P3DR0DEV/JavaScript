@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-</head>
+<%- include('./partials/head.ejs') %> 
 <body>
+    <%- include('./partials/nav.ejs') %> 
     <div class="container">
-        <h1>Home Page</h1>
-        <form action="/" method="post">
-            <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
-            <label for="teste">Nome:</label>
-            <input type="text" name="teste" id="teste">
-            <button type="submit">Submit</button>
-        </form>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 my-3">
+                <h1 class="text-center">Agenda</h1>
+                <p class="text-center lead">Seus contatos:</p>
+                <div class="row">
+                    <div class="col my-3">
+                        <div class="alert alert-danger">
+                            erro
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-table">
+                    <table class="table my-3">
+                        <tr>
+                            <td>Pedro</td>
+                            <td>Henrique</td>
+                            <td>(031)995133774</td>
+                            <td>pedrohenriquecamposmendes@hotmail.com</td>
+                        </tr>                       
+                        <tr>
+                            <td>Pedro</td>
+                            <td>Henrique</td>
+                            <td>(031)995133774</td>
+                            <td>pedrohenriquecamposmendes@hotmail.com</td>
+                        </tr>                       
+                        <tr>
+                            <td>Pedro</td>
+                            <td>Henrique</td>
+                            <td>(031)995133774</td>
+                            <td>pedrohenriquecamposmendes@hotmail.com</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
     </div>
-    <script src="./assets/js/bundle.js"></script>
+    <%- include('./partials/footer.ejs') %> 
 </body>
 </html>
