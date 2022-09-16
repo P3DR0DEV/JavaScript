@@ -6,9 +6,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-// const helmet = require('helmet');
-const csrf = require('csurf');
-const { checkCsrf, genCSRFToken } = require('./src/middlewares/csrfMiddleware')
+const { erros }= require('./src/middlewares/errorMiddleware')
 
 require('dotenv').config();
 const mongodb = process.env.MONGODB_URI;
@@ -28,17 +26,16 @@ const sessionOptions = session({
 });
 app.use(sessionOptions);
 app.use(flash());
-// app.use(helmet());
+
 
 app.set('views', path.resolve(__dirname, 'src' , 'views'));
 app.set('view engine', 'ejs');
 
-app.use(csrf());
-app.use(genCSRFToken);
-app.use(checkCsrf);
-
+app.use(erros)
 app.use(routes);
-
+// app.use((req,res)=>{
+//     res.render('404', {title: 'Erro'})
+// })
 
 mongoose.connect(mongodb)
 .then(app.listen(3000, ()=>{
