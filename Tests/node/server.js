@@ -6,7 +6,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-const { erros }= require('./src/middlewares/errorMiddleware')
+const { erros, success }= require('./src/middlewares/errorMiddleware')
 
 require('dotenv').config();
 const mongodb = process.env.MONGODB_URI;
@@ -31,7 +31,8 @@ app.use(flash());
 app.set('views', path.resolve(__dirname, 'src' , 'views'));
 app.set('view engine', 'ejs');
 
-app.use(erros)
+app.use(erros);
+app.use(success);
 app.use(routes);
 // app.use((req,res)=>{
 //     res.render('404', {title: 'Erro'})

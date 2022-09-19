@@ -3,4 +3,12 @@ const erros = (req,res,next)=>{
     next()
 }
 
-module.exports= { erros }
+const success = (req, res, next) =>{
+    res.locals.success = req.flash('success');
+    next()
+};
+
+module.exports= { 
+    erros,
+    success
+}
