@@ -1,14 +1,10 @@
-const erros = (req,res,next)=>{
+const flashMessages = (req,res,next)=>{
     res.locals.errors = req.flash('errors');
+    res.locals.success = req.flash('success');
+    res.locals.user = req.session.user;
+    
     next()
 }
-
-const success = (req, res, next) =>{
-    res.locals.success = req.flash('success');
-    next()
-};
-
 module.exports= { 
-    erros,
-    success
+    flashMessages
 }
