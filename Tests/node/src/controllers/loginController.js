@@ -1,6 +1,7 @@
 const { Login } = require('../models/loginModel');
 
 const loginPage = (req, res)=>{
+    if(req.session.user) return res.render('home', { title: 'home' })
     return res.render('login', {title: 'Login'});
 };
 
@@ -57,9 +58,14 @@ const loginEnter = async (req, res, next) =>{
 
 };
 
+const logout = (req, res)=>{
+    req.session.destroy()
+    res.redirect('/')
+}
 
 module.exports = {
     loginPage,
     register,
-    loginEnter
+    loginEnter,
+    logout
 }
