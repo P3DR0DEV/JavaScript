@@ -27,7 +27,7 @@ const ContatoSchema = new mongoose.Schema({
     }
 });
 
-const contatoModel = mongoose.model('Contato', ContatoSchema,'Agenda')
+const ContatoModel = mongoose.model('Contato', ContatoSchema,'Contatos')
 
 
 class Contato {
@@ -37,9 +37,11 @@ class Contato {
         this.contato = null
     };
 
-    register(){
+    async register(){
         this.valida()
         if(this.errors.length > 0 ) return 
+
+        this.contato = await ContatoModel.create(this.body)
     };
 
     valida(){
@@ -49,7 +51,7 @@ class Contato {
             this.errors.push('Email Invalido')
         };
 
-        if(this.body.telefone.length < 8 || this.body.password.length >= 12){
+        if(this.body.telefone.length < 8 || this.body.telefone.length >= 12){
             this.errors.push('Invalid Telephone Number.')
         };
     };
@@ -71,4 +73,4 @@ class Contato {
 
 };
 
-module.exports = Contato
+module.exports = { Contato, ContatoModel }

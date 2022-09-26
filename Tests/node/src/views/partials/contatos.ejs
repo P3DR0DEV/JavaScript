@@ -1,0 +1,16 @@
+<div class="responsive-table">
+    <table class="table my-3">
+        <% if(contatos.length> 0) { %>
+            <% contatos.forEach(contato=>{ %>
+                <tr>
+                    <td><%= contato.nome %></td>
+                    <td><%= contato.sobrenome %></td>
+                    <td><%= contato.email %></td>
+                    <td><%= contato.telefone %></td>
+                </tr>
+            <% }); %>
+        <% } else {%>
+            <p class="text-center lead">Ainda não foram registrados novos contatos.</p>
+        <% }%>
+    </table>
+</div>
