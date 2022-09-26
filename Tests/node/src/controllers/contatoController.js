@@ -1,7 +1,8 @@
+const { async } = require('regenerator-runtime');
 const { Contato } = require('../models/contatoModel');
 
 const index = (req, res)=> {
-    res.render('contato', {title: 'Criar Novo Contato'})
+    res.render('contato', {title: 'Criar Novo Contato', contato: ''})
 }
 
 const registerContato = async (req, res) =>{
@@ -12,14 +13,14 @@ const registerContato = async (req, res) =>{
         if(contato.errors.length > 0){
             req.flash('errors', contato.errors);
             req.session.save(()=>{
-                res.redirect('/')
+                res.redirect('/contato')
             });
             return;
         };
 
         req.flash('success', 'Usuário Criado com sucesso!');
         req.session.save(()=>{
-            return res.redirect('/')
+            return res.redirect(`/contato/${contato.contato._id}`)
         });
         return;
 
@@ -29,7 +30,21 @@ const registerContato = async (req, res) =>{
     }
 };
 
+
+const editIndex = async (req, res)=>{
+    if(!req.params.id) return res.render('404', { title: 'Not Found' });
+
+    const contato = await Contato.searchById(req.params.id);
+
+    if(!contato) return res.render('404', { title: 'Not Found' });
+
+
+    res.render('contato', {title: "Contato" , contato });
+
+};
+
 module.exports ={
     index, 
-    registerContato
+    registerContato,
+    editIndex
 }

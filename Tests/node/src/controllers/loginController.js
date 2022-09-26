@@ -1,7 +1,7 @@
 const { Login } = require('../models/loginModel');
 
 const loginPage = (req, res)=>{
-    if(req.session.user) return res.render('home', { title: 'home' })
+    if(req.session.user) return res.redirect('/')
     return res.render('login', {title: 'Login'});
 };
 

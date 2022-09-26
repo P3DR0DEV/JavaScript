@@ -36,6 +36,11 @@ class Contato {
         this.errors = [];
         this.contato = null
     };
+    
+    static async searchById(id){
+        const user = await ContatoModel.findById(id);
+        return user
+    };
 
     async register(){
         this.valida()
