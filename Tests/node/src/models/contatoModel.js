@@ -59,15 +59,28 @@ class Contato {
         this.contato = await ContatoModel.create(this.body)
     };
 
+    static async deletaContato(id){
+        if(typeof id !== 'string') return;
+
+        const contato = await ContatoModel.findOneAndDelete({_id: id});
+        return contato;
+        
+    };
+
     valida(){
         this.cleanUp()
         // validação de dados
-        if(!validator.isEmail(this.body.email)){
-            this.errors.push('Email Invalido')
-        };
+        if(!this.body.email || !this.body.telefone) this.errors.push('Você deve inserir um email ou telefone');
 
-        if(this.body.telefone.length < 8 || this.body.telefone.length >= 12){
-            this.errors.push('Invalid Telephone Number.')
+        if(this.body.email){
+            if(!validator.isEmail(this.body.email)){
+                this.errors.push('Email Invalido')
+            };
+        }
+        if(this.body.telefone){
+            if(this.body.telefone.length < 8 || this.body.telefone.length >= 12){
+                this.errors.push('Invalid Telephone Number.')
+            };
         };
     };
 

@@ -19,7 +19,7 @@ const registerContato = async (req, res) =>{
 
         req.flash('success', 'Usuário Criado com sucesso!');
         req.session.save(()=>{
-            return res.redirect(`/contato/${contato.contato._id}`)
+            return res.redirect(`/`)
         });
         return;
 
@@ -59,7 +59,7 @@ const editContato = async (req, res) =>{
     
         req.flash('success', 'Contato editado com sucesso!');
         req.session.save(()=>{
-            return res.redirect(`/contato/${contato.contato._id}`)
+            return res.redirect(`/`)
         });
         return;
 
@@ -70,9 +70,31 @@ const editContato = async (req, res) =>{
 };
 
 
+const deletContato = async (req, res) =>{
+    try{
+        if(!req.params.id) return res.render('404', { title: 'Not Found' });
+
+        const contato = Contato.deletaContato(req.params.id);
+
+        if(!contato) return res.render('404', { title: 'Not Found'})
+    
+        req.flash('success', 'Contato excluido com sucesso!');
+        req.session.save(()=>{
+            return res.redirect(`/`)
+        });
+        return;
+
+
+    }catch(e){
+        console.log(e);
+        return res.render('404', {title: 'Not found'})
+    }
+};
+
 module.exports ={
     index, 
     registerContato,
     editIndex,
-    editContato
+    editContato,
+    deletContato
 }

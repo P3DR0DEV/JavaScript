@@ -7,6 +7,8 @@
                     <td><%= contato.sobrenome %></td>
                     <td><%= contato.email %></td>
                     <td><%= contato.telefone %></td>
+                    <td><a href="/contato/<%= contato._id %>">Editar</a></td>
+                    <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">Deletar</a></td>
                 </tr>
             <% }); %>
         <% } else {%>
