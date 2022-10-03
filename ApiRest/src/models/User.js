@@ -28,7 +28,7 @@ export default class User extends Model {
         defaultValue: '',
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.VIRTUAL,
         defaultValue: '',
         validate: {
           len: {
@@ -41,7 +41,9 @@ export default class User extends Model {
       sequelize,
     });
     this.addHook('beforeSave', async (user) => {
-      user.password_hash = await bcryptjs.hash(user.password, 8);
+      if (user.password) {
+        user.password_hash = await bcryptjs.hash(user.password, 8);
+      }
     });
     return this;
   }
