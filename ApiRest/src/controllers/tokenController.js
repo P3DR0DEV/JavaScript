@@ -5,7 +5,7 @@ import User from '../models/User';
 dotenv.config();
 class TokenController {
   async create(req, res) {
-    const { id, email, password } = req.body;
+    const { email, password } = req.body;
 
     if (!email || !password) return res.status(401).json({ errors: 'Invalid Credentials' });
     const user = await User.findOne({ where: { email } });
@@ -13,6 +13,7 @@ class TokenController {
     if (!user) return res.status(401).json({ errors: 'Invalid User' });
 
     if (!(await user.validPassword(password))) return res.status(401).json({ errors: 'Invalid Credentials' });
+    const { id } = user;
 
     const token = Jwt.sign({ id, email }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRE,
