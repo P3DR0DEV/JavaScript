@@ -3,14 +3,10 @@ import User from '../models/User';
 class UserController {
   async create(req, res) {
     try {
-      const { nome, email, password } = req.body;
+      const novoUser = await User.create(req.body);
 
-      const novoUser = await User.create({
-        nome,
-        email,
-        password,
-      });
-      return res.json(novoUser);
+      const { id, nome, email } = novoUser;
+      return res.json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -67,14 +63,13 @@ class UserController {
 
   async update(req, res) {
     try {
-      const id = req.userId;
-      if (!id) {
+      if (!req.userId) {
         return res.status(400).json({
           errors: ['ID não enviado'],
         });
       }
 
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(400).json({
           errors: ['Cannot find User'],
@@ -82,7 +77,9 @@ class UserController {
       }
       const userUpdated = await user.update(req.body);
 
-      return res.status(200).json(userUpdated);
+      const { id, nome, email } = userUpdated;
+
+      return res.status(200).json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
