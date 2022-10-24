@@ -46,7 +46,7 @@ export default class Aluno extends Model {
         defaultValue: '',
         validate: {
           isFloat: {
-            msg: '',
+            msg: 'Peso precisa ser válido',
           },
         },
       },
@@ -55,7 +55,7 @@ export default class Aluno extends Model {
         defaultValue: '',
         validate: {
           isFloat: {
-            msg: '',
+            msg: 'Altura precisa ser válida',
           },
         },
       },
