@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server.js"
+    "test": "nodemon server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
     "eslint": "^7.32.0 || ^8.2.0",

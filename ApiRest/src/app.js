@@ -1,11 +1,11 @@
 import { resolve } from 'path';
 import express from 'express';
-import homeRoutes from './src/routes/homeRoutes';
-import userRoutes from './src/routes/userRoutes';
-import tokenRoutes from './src/routes/tokenRoutes';
-import alunoRoutes from './src/routes/alunoRoutes';
-import uploadRoutes from './src/routes/uploadRoutes';
-import './src/database';
+import homeRoutes from './routes/homeRoutes';
+import userRoutes from './routes/userRoutes';
+import tokenRoutes from './routes/tokenRoutes';
+import alunoRoutes from './routes/alunoRoutes';
+import uploadRoutes from './routes/uploadRoutes';
+import './database';
 
 class App {
   constructor() {
