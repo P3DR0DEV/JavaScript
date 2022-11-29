@@ -14,6 +14,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    requireConfigFile: false,
     babelOptions: {
       presets: ['@babel/preset-react'],
     },
@@ -25,6 +26,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
-    'no-confusing-arrow': 0
+    'no-confusing-arrow': 0,
   },
 };

@@ -10,7 +10,7 @@ function login() {
         <small>teste</small>
       </Title>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-      <a href="#id">Teste Link</a>
+      <button type="button">Enviar</button>
     </Container>
   );
 }
