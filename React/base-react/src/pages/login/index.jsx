@@ -7,9 +7,7 @@ function login() {
     <Container>
       <Title isRed={false}>
         Login
-        <small>teste</small>
       </Title>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
       <button type="button">Enviar</button>
     </Container>
   );
