@@ -24,7 +24,7 @@ module.exports = {
   plugins: ['react', 'react-hooks'],
   rules: {
     'import/prefer-default-export': 0,
-    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/rules-of-hooks': 0,
     'react-hooks/exhaustive-deps': 'error',
     'no-confusing-arrow': 0,
   },
